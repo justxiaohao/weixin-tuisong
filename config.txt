@@ -7,7 +7,7 @@
 "app_secret": "bea8b797fc09979a6e288e7a07863aeb",
 
 # 模板消息接口里的模板ID，替换掉下方文字内容，不要删除双引号
-"template_id": "41geQJWLDlLZ2cHHz-Wof5O3UKJsYJxvOyfRo1NqY7Y",
+"template_id": "ca6PLzZJKYg8UX6BrUTAuBZLnBCjpLfEd0EisVc5MTk",
 
 # 接收公众号消息的微信号（user-id），如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
 "user": ["oKYPI5h6u5_M2Ttxu0Bwzx3ULDCM"],
