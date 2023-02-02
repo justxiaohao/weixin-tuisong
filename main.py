@@ -192,15 +192,15 @@ def tip():
         data = json.loads(data)
         pop = data["newslist"][0]["humidity"]
         tips = data["newslist"][0]["tips"]
-        today = data["newslist"][0]["date"]
-        week = data["newslist"][0]["week"]
+        todays = data["newslist"][0]["date"]
+        weeks = data["newslist"][0]["week"]
         windspeed = data["newslist"][0]["windspeed"]
-        return pop,tips,today,week,windspeed
+        return pop,tips,todays,weeks,windspeed
     else:
         return "",""
 
 #推送信息
-def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, pipi, lizhi, pop, tips, note_en, note_ch, health_tip, lucky_, today, week, windspeed):
+def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, pipi, lizhi, pop, tips, note_en, note_ch, health_tip, lucky_, todays, weeks, windspeed):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     # year = localtime().tm_year
@@ -360,14 +360,14 @@ if __name__ == "__main__":
     #健康小提示
     health_tip = health()
     #下雨概率和建议
-    pop,tips,today,week,windspeed = tip()
+    pop,tips,todays,weeks,windspeed = tip()
     #励志名言
     lizhi = lizhi()
     #星座运势
     lucky_ = lucky()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, city, weather, max_temperature, min_temperature, pipi, lizhi,pop,tips, note_en, note_ch, health_tip, lucky_, today, week, windspeed)
+        send_message(user, accessToken, city, weather, max_temperature, min_temperature, pipi, lizhi,pop,tips, note_en, note_ch, health_tip, lucky_, todays, weeks, windspeed)
     import time
     time_duration = 3.5
     time.sleep(time_duration)
