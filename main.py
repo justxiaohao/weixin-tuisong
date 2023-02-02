@@ -190,16 +190,17 @@ def tip():
         res = conn.getresponse()
         data = res.read()
         data = json.loads(data)
-        pop = data["newslist"][0]["pcpn"]
+        pop = data["newslist"][0]["humidity"]
         tips = data["newslist"][0]["tips"]
         today = data["newslist"][0]["date"]
         week = data["newslist"][0]["week"]
-        return pop,tips,todays,weeks
+        windspeed = data["newslist"][0]["windspeed"]
+        return pop,tips,todays,weeks,windspeed
     else:
         return "",""
 
 #推送信息
-def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, pipi, lizhi, pop, tips, note_en, note_ch, health_tip, lucky_, todays, weeks):
+def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, pipi, lizhi, pop, tips, note_en, note_ch, health_tip, lucky_, todays, weeks, windspeed):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     # year = localtime().tm_year
@@ -237,6 +238,10 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
             },
             "weather": {
                 "value": weather,
+                "color": get_color()
+            },
+            "windspeed": {
+                "value": windspeed,
                 "color": get_color()
             },
             "min_temperature": {
@@ -355,7 +360,7 @@ if __name__ == "__main__":
     #健康小提示
     health_tip = health()
     #下雨概率和建议
-    pop,tips,todays,weeks = tip()
+    pop,tips,todays,weeks,windspeed = tip()
     #励志名言
     lizhi = lizhi()
     #星座运势
